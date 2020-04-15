@@ -29,11 +29,11 @@ def handle_thread(conn):
 
         #Mendapatkan panjang konten
         contlen = headers.partition("Content-Length: ")
-        length = int(contlen[2].replace("\r\n\r\n", ""))
-
+        length_content = int(contlen[2].replace("\r\n\r\n", ""))
         #menerima pesan
-        body = conn.recv(length)
-        reply = "OK " + body.decode('ascii')
+        body = conn.recv(length_content)
+        body = body.decode('ascii')
+        reply = "OK " + body
         length_reply = str(len(reply))
         
         #kembalikan response ke client
